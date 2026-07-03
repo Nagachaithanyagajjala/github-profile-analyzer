@@ -1,0 +1,59 @@
+{
+  "info": {
+    "name": "GitHub Profile Analyzer API",
+    "description": "Collection for testing the GitHub Profile Analyzer backend.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "username", "value": "octocat" }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health"
+      }
+    },
+    {
+      "name": "Analyze Profile",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/profiles/analyze/{{username}}"
+      }
+    },
+    {
+      "name": "List Profiles",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/profiles?page=1&limit=10&sortBy=followers&order=DESC",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "profiles"],
+          "query": [
+            { "key": "page", "value": "1" },
+            { "key": "limit", "value": "10" },
+            { "key": "search", "value": "", "disabled": true },
+            { "key": "sortBy", "value": "followers" },
+            { "key": "order", "value": "DESC" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Single Profile",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/profiles/{{username}}"
+      }
+    },
+    {
+      "name": "Delete Profile",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/profiles/{{username}}"
+      }
+    }
+  ]
+}
